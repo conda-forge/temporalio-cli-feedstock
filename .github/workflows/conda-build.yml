@@ -67,6 +67,7 @@ jobs:
         BINSTAR_TOKEN: ${{ secrets.BINSTAR_TOKEN }}
         FEEDSTOCK_TOKEN: ${{ secrets.FEEDSTOCK_TOKEN }}
         STAGING_BINSTAR_TOKEN: ${{ secrets.STAGING_BINSTAR_TOKEN }}
+        OSX_SDK_DIR: "/opt/sdk"
       shell: bash
       run: |
         export flow_run_id="github_$GITHUB_RUN_ID"
