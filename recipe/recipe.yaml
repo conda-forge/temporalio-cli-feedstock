@@ -14,7 +14,7 @@ build:
   number: 0
   script:
     - cd src
-    - go-licenses save ./cmd/temporal --save_path ../library_licenses --ignore github.com/cactus/go-statsd-client/statsd --ignore modernc.org/mathutil
+    - go-licenses save ./cmd/temporal --save_path ../library_licenses --ignore github.com/cactus/go-statsd-client/statsd --ignore modernc.org/mathutil --ignore github.com/apache/thrift/lib/go/thrift --ignore github.com/jmespath/go-jmespath
     - if: win
       then: go build -ldflags="-s -w -X github.com/temporalio/cli/temporalcli.Version=${{ version }}" -v -o %LIBRARY_BIN%\temporal.exe ./cmd/temporal
       else: go build -ldflags="-s -w -X github.com/temporalio/cli/temporalcli.Version=${{ version }}" -v -o $PREFIX/bin/temporal ./cmd/temporal
@@ -41,11 +41,13 @@ about:
   homepage: https://temporal.io/
   license: MIT
   license_file:
-    - LICENSE
+    - src/LICENSE
     - library_licenses/
-    # these two are not properly collected by go-licenses
-    - go-statsd-client.txt
+    # these are not properly collected by go-licenses
+    - go-statsd-license.txt
     - mathutil-license.txt
+    - thrift-license.txt
+    - jmespath-license.txt
 
   summary: Command-line interface for running and interacting with Temporal Server and UI
   description: |
