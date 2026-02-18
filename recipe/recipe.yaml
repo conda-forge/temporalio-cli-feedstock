@@ -1,12 +1,13 @@
 context:
-  version: "1.6.1-server-1.31.0-150.0"
+  raw_version: "1.6.1-server-1.31.0-150.0"
+  version: ${{ raw_version | replace('-', '.') }}
 
 package:
   name: temporalio-cli
   version: ${{ version }}
 
 source:
-  url: https://github.com/temporalio/cli/archive/refs/tags/v${{ version }}.tar.gz
+  url: https://github.com/temporalio/cli/archive/refs/tags/v${{ raw_version }}.tar.gz
   sha256: ac0bce827d7a051b25e296afd5cd24d580b5772db4888325e478299e3cdc25e5
   target_directory: src
 
@@ -14,10 +15,10 @@ build:
   number: 0
   script:
     - cd src
-    - go-licenses save ./cmd/temporal --save_path ../library_licenses --ignore github.com/cactus/go-statsd-client/statsd --ignore modernc.org/mathutil --ignore github.com/apache/thrift/lib/go/thrift --ignore github.com/jmespath/go-jmespath
+    - go-licenses save ./cmd/temporal --save_path ../library_licenses --ignore github.com/cactus/go-statsd-client/statsd --ignore modernc.org/mathutil --ignore github.com/apache/thrift/lib/go/thrift --ignore github.com/jmespath/go-jmespath --ignore github.com/temporalio/cli/cliext
     - if: win
-      then: go build -ldflags="-s -w -X github.com/temporalio/cli/temporalcli.Version=${{ version }}" -v -o %LIBRARY_BIN%\temporal.exe ./cmd/temporal
-      else: go build -ldflags="-s -w -X github.com/temporalio/cli/temporalcli.Version=${{ version }}" -v -o $PREFIX/bin/temporal ./cmd/temporal
+      then: go build -ldflags="-s -w -X github.com/temporalio/cli/temporalcli.Version=${{ raw_version }}" -v -o %LIBRARY_BIN%\temporal.exe ./cmd/temporal
+      else: go build -ldflags="-s -w -X github.com/temporalio/cli/temporalcli.Version=${{ raw_version }}" -v -o $PREFIX/bin/temporal ./cmd/temporal
     - if: unix
       then:
         - mkdir -p $PREFIX/share/bash-completion/completions
