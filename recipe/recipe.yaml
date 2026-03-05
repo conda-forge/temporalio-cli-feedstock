@@ -1,6 +1,6 @@
 context:
   raw_version: "1.6.1-server-1.31.0-150.0"
-  version: ${{ raw_version | replace('-', '.') }}
+  version: "1.6.1"
 
 package:
   name: temporalio-cli
