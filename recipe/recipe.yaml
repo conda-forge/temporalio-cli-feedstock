@@ -1,14 +1,13 @@
 context:
-  raw_version: "1.6.1-server-1.31.0-150.0"
-  version: ${{ raw_version | replace('-', '.') }}
+  version: "1.7.0"
 
 package:
   name: temporalio-cli
   version: ${{ version }}
 
 source:
-  url: https://github.com/temporalio/cli/archive/refs/tags/v${{ raw_version }}.tar.gz
-  sha256: ac0bce827d7a051b25e296afd5cd24d580b5772db4888325e478299e3cdc25e5
+  url: https://github.com/temporalio/cli/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 58097dc4c315ade1d1f338b256dc05b785bb9e413708704605f3f7bacd1de045
   target_directory: src
 
 build:
@@ -59,3 +58,4 @@ about:
 extra:
   recipe-maintainers:
     - wolfv
+    - xhochy
