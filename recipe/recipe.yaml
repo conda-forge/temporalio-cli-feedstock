@@ -1,5 +1,5 @@
 context:
-  version: "1.7.3"
+  version: "1.8.0"
 
 package:
   name: temporalio-cli
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/temporalio/cli/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: d28187545061eb41ef36041ef2045d8ea63fd55da9551b60a32bd9cb80f7ce52
+  sha256: 03fbd0088ae5c0193e8f3d143579546a9790b3af2bd5a00e4266126c77cbb3c7
   target_directory: src
 
 build:
